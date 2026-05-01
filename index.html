@@ -4,8 +4,10 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ZEN Home | Formulaire de Contact Premium</title>
-    <meta name="description" content="Rejoignez ZEN Home. Remplissez vos informations pour une ouverture rapide et personnalisée.">
+    <title>ZEN Home | Formulaire de Contact</title>
+    <meta name="description"
+        content="Rejoignez ZEN Home. Remplissez vos informations pour une ouverture rapide et personnalisée.">
+    <link rel="icon" type="image/png" href="logo.png">
     <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -22,30 +24,31 @@
         <div class="card" role="region" aria-label="Formulaire ZEN Home">
 
             <div class="header">
+                <img src="logo.png" alt="ZEN Home Logo" class="brand-logo">
                 <h1>✨ ZEN Home</h1>
-                <p>Découvrez une nouvelle expérience. Laissez-nous vos coordonnées et nous vous recontacterons sous 24h.</p>
+                <p>Découvrez une nouvelle expérience. Laissez-nous vos coordonnées et nous vous recontacterons.</p>
             </div>
 
-            <!-- NETLIFY FORM -->
-            <form id="leadForm" name="zen-home-leads" method="POST" data-netlify="true" aria-describedby="form-desc" novalidate>
+            <form id="leadForm" name="zen-home-leads" method="POST" data-netlify="true" aria-describedby="form-desc"
+                novalidate>
 
-                <!-- Netlify hidden input -->
                 <input type="hidden" name="form-name" value="zen-home-leads" />
 
-                <!-- Honeypot -->
                 <p style="display:none">
                     <label>Bot field: <input name="bot-field" /></label>
                 </p>
 
                 <div class="form-grid">
                     <div class="field">
-                        <input id="firstName" type="text" name="firstName" placeholder=" " required autocomplete="given-name" />
+                        <input id="firstName" type="text" name="firstName" placeholder=" " required
+                            autocomplete="given-name" />
                         <label for="firstName">Prénom</label>
                         <div class="error-msg" id="firstNameError" aria-live="polite"></div>
                     </div>
 
                     <div class="field">
-                        <input id="lastName" type="text" name="lastName" placeholder=" " required autocomplete="family-name" />
+                        <input id="lastName" type="text" name="lastName" placeholder=" " required
+                            autocomplete="family-name" />
                         <label for="lastName">Nom</label>
                         <div class="error-msg" id="lastNameError" aria-live="polite"></div>
                     </div>
@@ -63,7 +66,8 @@
                     </div>
 
                     <div class="field">
-                        <input id="companyName" type="text" name="companyName" placeholder=" " autocomplete="organization" />
+                        <input id="companyName" type="text" name="companyName" placeholder=" "
+                            autocomplete="organization" />
                         <label for="companyName">Société</label>
                         <div class="error-msg" id="companyNameError" aria-live="polite"></div>
                     </div>
@@ -76,7 +80,7 @@
 
                     <div class="field full-width">
                         <textarea id="address" name="address" placeholder=" "></textarea>
-                        <label for="address">Adresse ou message complémentaire</label>
+                        <label for="address">Adresse</label>
                         <div class="error-msg" id="addressError" aria-live="polite"></div>
                     </div>
                 </div>
@@ -196,4 +200,4 @@
 
 </body>
 
-</html>
+</html>
