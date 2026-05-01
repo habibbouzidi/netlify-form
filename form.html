@@ -4,131 +4,152 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ouverture ZEN Home</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>ZEN Home | Formulaire de Contact Premium</title>
+    <meta name="description" content="Rejoignez ZEN Home. Remplissez vos informations pour une ouverture rapide et personnalisée.">
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
-    <div class="wrap">
+    <!-- Animated Background Blobs -->
+    <div class="bg-blobs" aria-hidden="true">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <div class="container">
         <div class="card" role="region" aria-label="Formulaire ZEN Home">
 
-            <div class="intro">
-                <h1>🎉 Ouverture ZEN Home</h1>
-                <p class="small">Remplissez vos informations — cela prend moins d'une minute. Nous vous contacterons rapidement.</p>
+            <div class="header">
+                <h1>✨ ZEN Home</h1>
+                <p>Découvrez une nouvelle expérience. Laissez-nous vos coordonnées et nous vous recontacterons sous 24h.</p>
             </div>
 
             <!-- NETLIFY FORM -->
-            <form name="zen-home-leads" method="POST" data-netlify="true" aria-describedby="form-desc">
+            <form id="leadForm" name="zen-home-leads" method="POST" data-netlify="true" aria-describedby="form-desc" novalidate>
 
-                <!-- required hidden input -->
+                <!-- Netlify hidden input -->
                 <input type="hidden" name="form-name" value="zen-home-leads" />
 
-                <!-- honeypot anti-spam -->
+                <!-- Honeypot -->
                 <p style="display:none">
-                    <label>Ne remplissez pas ceci: <input name="bot-field" /></label>
+                    <label>Bot field: <input name="bot-field" /></label>
                 </p>
 
-                <div class="grid">
-                    <div>
-                        <label class="visually-hidden" for="firstName">Prénom</label>
-                        <input id="firstName" type="text" name="firstName" placeholder="Prénom *" required />
-                        <div class="error" id="firstNameError" aria-live="polite"></div>
+                <div class="form-grid">
+                    <div class="field">
+                        <input id="firstName" type="text" name="firstName" placeholder=" " required autocomplete="given-name" />
+                        <label for="firstName">Prénom</label>
+                        <div class="error-msg" id="firstNameError" aria-live="polite"></div>
                     </div>
 
-                    <div>
-                        <label class="visually-hidden" for="lastName">Nom</label>
-                        <input id="lastName" type="text" name="lastName" placeholder="Nom *" required />
-                        <div class="error" id="lastNameError" aria-live="polite"></div>
+                    <div class="field">
+                        <input id="lastName" type="text" name="lastName" placeholder=" " required autocomplete="family-name" />
+                        <label for="lastName">Nom</label>
+                        <div class="error-msg" id="lastNameError" aria-live="polite"></div>
                     </div>
 
-                    <div class="full">
-                        <label class="visually-hidden" for="email">E-mail</label>
-                        <input id="email" type="email" name="email" placeholder="E‑mail *" required />
-                        <div class="error" id="emailError" aria-live="polite"></div>
+                    <div class="field full-width">
+                        <input id="email" type="email" name="email" placeholder=" " required autocomplete="email" />
+                        <label for="email">E-mail Professionnel</label>
+                        <div class="error-msg" id="emailError" aria-live="polite"></div>
                     </div>
 
-                    <div>
-                        <label class="visually-hidden" for="phone">Téléphone</label>
-                        <input id="phone" type="tel" name="phone" placeholder="Téléphone" />
-                        <div class="error" id="phoneError" aria-live="polite"></div>
+                    <div class="field">
+                        <input id="phone" type="tel" name="phone" placeholder=" " autocomplete="tel" />
+                        <label for="phone">Téléphone</label>
+                        <div class="error-msg" id="phoneError" aria-live="polite"></div>
                     </div>
 
-                    <div>
-                        <label class="visually-hidden" for="companyName">Société</label>
-                        <input id="companyName" type="text" name="companyName" placeholder="Société" />
-                        <div class="error" id="companyNameError" aria-live="polite"></div>
+                    <div class="field">
+                        <input id="companyName" type="text" name="companyName" placeholder=" " autocomplete="organization" />
+                        <label for="companyName">Société</label>
+                        <div class="error-msg" id="companyNameError" aria-live="polite"></div>
                     </div>
 
-                    <div class="full">
-                        <label class="visually-hidden" for="address">Adresse</label>
-                        <textarea id="address" name="address" placeholder="Adresse"></textarea>
-                        <div class="error" id="addressError" aria-live="polite"></div>
+                    <div class="field full-width">
+                        <input id="city" type="text" name="city" placeholder=" " autocomplete="address-level2" />
+                        <label for="city">Ville / Localité</label>
+                        <div class="error-msg" id="cityError" aria-live="polite"></div>
                     </div>
 
-                    <div>
-                        <label class="visually-hidden" for="city">Ville</label>
-                        <input id="city" type="text" name="city" placeholder="Ville" />
-                        <div class="error" id="cityError" aria-live="polite"></div>
+                    <div class="field full-width">
+                        <textarea id="address" name="address" placeholder=" "></textarea>
+                        <label for="address">Adresse ou message complémentaire</label>
+                        <div class="error-msg" id="addressError" aria-live="polite"></div>
                     </div>
-
                 </div>
 
                 <div class="actions">
-                    <button type="submit">Envoyer</button>
-                    <div class="helper">* champs obligatoires</div>
+                    <button type="submit" id="submitBtn">
+                        <span>Envoyer ma demande</span>
+                        <div class="spinner"></div>
+                    </button>
+                    <p class="helper-text">Vos données sont sécurisées et traitées avec soin.</p>
                 </div>
 
             </form>
 
-            <div class="success" id="successMsg" role="status" aria-live="polite">
-                <div class="success-inner">✅ <span>Merci ! Nous vous contacterons bientôt.</span></div>
+            <div class="success-container" id="successMsg">
+                <div class="success-icon">✓</div>
+                <h2>Demande Reçue !</h2>
+                <p>Merci de votre intérêt pour ZEN Home. Un conseiller vous contactera très prochainement.</p>
             </div>
 
         </div>
     </div>
 
     <script>
-        const form = document.querySelector("form");
+        const form = document.getElementById("leadForm");
+        const submitBtn = document.getElementById("submitBtn");
         const successMsg = document.getElementById("successMsg");
 
-        // helper to set error text in French
-        function setError(id, message){
-            const el = document.getElementById(id + 'Error');
-            if(el) el.textContent = message || '';
+        function showErrors(errors) {
+            // Reset all errors
+            document.querySelectorAll('.error-msg').forEach(el => {
+                el.textContent = '';
+                el.classList.remove('visible');
+            });
+            document.querySelectorAll('.field').forEach(el => el.classList.remove('has-error'));
+
+            // Show specific errors
+            Object.keys(errors).forEach(key => {
+                const errorEl = document.getElementById(key + 'Error');
+                if (errorEl) {
+                    errorEl.textContent = errors[key];
+                    errorEl.classList.add('visible');
+                    errorEl.closest('.field').classList.add('has-error');
+                }
+            });
         }
 
-        function validate(){
-            let ok = true;
-            const first = document.getElementById('firstName');
-            const last = document.getElementById('lastName');
-            const email = document.getElementById('email');
+        function validate() {
+            const errors = {};
+            const first = document.getElementById('firstName').value.trim();
+            const last = document.getElementById('lastName').value.trim();
+            const email = document.getElementById('email').value.trim();
 
-            // reset
-            setError('firstName'); setError('lastName'); setError('email');
-
-            if(!first.value.trim()){
-                setError('firstName','Veuillez entrer votre prénom.'); ok=false;
-            }
-            if(!last.value.trim()){
-                setError('lastName','Veuillez entrer votre nom.'); ok=false;
-            }
-            if(!email.value.trim()){
-                setError('email','Veuillez entrer votre e‑mail.'); ok=false;
-            } else if(!/^\S+@\S+\.\S+$/.test(email.value)){
-                setError('email','Format d\'e‑mail invalide.'); ok=false;
+            if (!first) errors.firstName = 'Le prénom est requis';
+            if (!last) errors.lastName = 'Le nom est requis';
+            if (!email) {
+                errors.email = 'L\'e-mail est requis';
+            } else if (!/^\S+@\S+\.\S+$/.test(email)) {
+                errors.email = 'Format d\'e-mail invalide';
             }
 
-            return ok;
+            showErrors(errors);
+            return Object.keys(errors).length === 0;
         }
 
         form.addEventListener("submit", function (e) {
             e.preventDefault();
 
-            if(!validate()) return;
+            if (!validate()) return;
+
+            // Loading state
+            submitBtn.disabled = true;
+            submitBtn.classList.add('loading');
 
             const data = new FormData(form);
 
@@ -137,14 +158,42 @@
                 body: data
             })
                 .then(() => {
-                    // show animated success
                     form.style.display = "none";
                     successMsg.style.display = "block";
+                    // Scroll to top of card if needed
+                    successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 })
-                .catch(() => alert("Erreur. Veuillez réessayer."));
+                .catch((err) => {
+                    console.error(err);
+                    alert("Une erreur est survenue. Veuillez réessayer ultérieurement.");
+                })
+                .finally(() => {
+                    submitBtn.disabled = false;
+                    submitBtn.classList.remove('loading');
+                });
+        });
+
+        // Real-time validation on blur
+        form.querySelectorAll('input, textarea').forEach(input => {
+            input.addEventListener('blur', () => {
+                const fieldName = input.getAttribute('id');
+                const errorEl = document.getElementById(fieldName + 'Error');
+                const fieldContainer = input.closest('.field');
+
+                if (input.hasAttribute('required') && !input.value.trim()) {
+                    errorEl.textContent = 'Ce champ est obligatoire';
+                    errorEl.classList.add('visible');
+                    fieldContainer.classList.add('has-error');
+                } else {
+                    // Clear error if valid
+                    errorEl.textContent = '';
+                    errorEl.classList.remove('visible');
+                    fieldContainer.classList.remove('has-error');
+                }
+            });
         });
     </script>
 
 </body>
 
-</html>
+</html>
