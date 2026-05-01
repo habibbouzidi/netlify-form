@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ouverture ZEN Home</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <div class="wrap">
+        <div class="card" role="region" aria-label="Formulaire ZEN Home">
+
+            <div class="intro">
+                <h1>🎉 Ouverture ZEN Home</h1>
+                <p class="small">Remplissez vos informations — cela prend moins d'une minute. Nous vous contacterons rapidement.</p>
+            </div>
+
+            <!-- NETLIFY FORM -->
+            <form name="zen-home-leads" method="POST" data-netlify="true" aria-describedby="form-desc">
+
+                <!-- required hidden input -->
+                <input type="hidden" name="form-name" value="zen-home-leads" />
+
+                <!-- honeypot anti-spam -->
+                <p style="display:none">
+                    <label>Ne remplissez pas ceci: <input name="bot-field" /></label>
+                </p>
+
+                <div class="grid">
+                    <div>
+                        <label class="visually-hidden" for="firstName">Prénom</label>
+                        <input id="firstName" type="text" name="firstName" placeholder="Prénom *" required />
+                        <div class="error" id="firstNameError" aria-live="polite"></div>
+                    </div>
+
+                    <div>
+                        <label class="visually-hidden" for="lastName">Nom</label>
+                        <input id="lastName" type="text" name="lastName" placeholder="Nom *" required />
+                        <div class="error" id="lastNameError" aria-live="polite"></div>
+                    </div>
+
+                    <div class="full">
+                        <label class="visually-hidden" for="email">E-mail</label>
+                        <input id="email" type="email" name="email" placeholder="E‑mail *" required />
+                        <div class="error" id="emailError" aria-live="polite"></div>
+                    </div>
+
+                    <div>
+                        <label class="visually-hidden" for="phone">Téléphone</label>
+                        <input id="phone" type="tel" name="phone" placeholder="Téléphone" />
+                        <div class="error" id="phoneError" aria-live="polite"></div>
+                    </div>
+
+                    <div>
+                        <label class="visually-hidden" for="companyName">Société</label>
+                        <input id="companyName" type="text" name="companyName" placeholder="Société" />
+                        <div class="error" id="companyNameError" aria-live="polite"></div>
+                    </div>
+
+                    <div class="full">
+                        <label class="visually-hidden" for="address">Adresse</label>
+                        <textarea id="address" name="address" placeholder="Adresse"></textarea>
+                        <div class="error" id="addressError" aria-live="polite"></div>
+                    </div>
+
+                    <div>
+                        <label class="visually-hidden" for="city">Ville</label>
+                        <input id="city" type="text" name="city" placeholder="Ville" />
+                        <div class="error" id="cityError" aria-live="polite"></div>
+                    </div>
+
+                </div>
+
+                <div class="actions">
+                    <button type="submit">Envoyer</button>
+                    <div class="helper">* champs obligatoires</div>
+                </div>
+
+            </form>
+
+            <div class="success" id="successMsg" role="status" aria-live="polite">
+                <div class="success-inner">✅ <span>Merci ! Nous vous contacterons bientôt.</span></div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        const form = document.querySelector("form");
+        const successMsg = document.getElementById("successMsg");
+
+        // helper to set error text in French
+        function setError(id, message){
+            const el = document.getElementById(id + 'Error');
+            if(el) el.textContent = message || '';
+        }
+
+        function validate(){
+            let ok = true;
+            const first = document.getElementById('firstName');
+            const last = document.getElementById('lastName');
+            const email = document.getElementById('email');
+
+            // reset
+            setError('firstName'); setError('lastName'); setError('email');
+
+            if(!first.value.trim()){
+                setError('firstName','Veuillez entrer votre prénom.'); ok=false;
+            }
+            if(!last.value.trim()){
+                setError('lastName','Veuillez entrer votre nom.'); ok=false;
+            }
+            if(!email.value.trim()){
+                setError('email','Veuillez entrer votre e‑mail.'); ok=false;
+            } else if(!/^\S+@\S+\.\S+$/.test(email.value)){
+                setError('email','Format d\'e‑mail invalide.'); ok=false;
+            }
+
+            return ok;
+        }
+
+        form.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            if(!validate()) return;
+
+            const data = new FormData(form);
+
+            fetch("/", {
+                method: "POST",
+                body: data
+            })
+                .then(() => {
+                    // show animated success
+                    form.style.display = "none";
+                    successMsg.style.display = "block";
+                })
+                .catch(() => alert("Erreur. Veuillez réessayer."));
+        });
+    </script>
+
+</body>
+
+</html>
