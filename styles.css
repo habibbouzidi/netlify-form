@@ -1,24 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
 
 :root {
-    --primary: #1A0A19;
-    --primary-light: #2D122A;
-    --accent: #6B2D62;
-    --accent-hover: #521D4B;
-    --accent-soft: rgba(107, 45, 98, 0.1);
+    /* Monochrome Palette */
+    --primary: #000000;
+    --primary-light: #111111;
+    --accent: #ffffff;
+    --accent-hover: #f3f4f6;
+    --accent-soft: rgba(255, 255, 255, 0.1);
 
-    --bg-dark: #0D050D;
-    --glass-bg: rgba(255, 255, 255, 0.02);
-    --glass-border: rgba(255, 255, 255, 0.05);
-    --glass-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+    --bg-dark: #000000;
+    --glass-bg: rgba(0, 0, 0, 0.6);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.9);
 
-    --input-bg: rgba(255, 255, 255, 0.03);
-    --input-border: rgba(255, 255, 255, 0.08);
+    --input-bg: rgba(255, 255, 255, 0.05);
+    --input-border: rgba(255, 255, 255, 0.1);
     --input-focus: var(--accent);
-    --text-main: #f8fafc;
-    --text-muted: #a1a1aa;
-    --error: #fb7185;
-    --success: #34d399;
+    --text-main: #ffffff;
+    --text-muted: #9ca3af;
+    --error: #ff4d4d;
+    --success: #00ff88;
 
     --radius-xl: 32px;
     --radius-lg: 20px;
@@ -46,69 +47,37 @@ body {
     position: relative;
 }
 
-.bg-blobs {
+/* Responsive Background Images */
+body::before {
+    content: '';
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     z-index: -1;
-    overflow: hidden;
-    filter: blur(100px);
+    background-image: url('bg.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
-.blob {
-    position: absolute;
-    border-radius: 50%;
-    opacity: 0.4;
-    animation: move 20s infinite alternate;
-}
-
-.blob-1 {
-    width: 400px;
-    height: 400px;
-    background: var(--accent);
-    top: -100px;
-    right: -100px;
-    animation-duration: 25s;
-}
-
-.blob-2 {
-    width: 500px;
-    height: 500px;
-    background: #521D4B;
-    bottom: -150px;
-    left: -150px;
-    animation-duration: 30s;
-    animation-delay: -5s;
-}
-
-.blob-3 {
-    width: 300px;
-    height: 300px;
-    background: #1A0A19;
-    top: 40%;
-    left: 30%;
-    animation-duration: 20s;
-    animation-delay: -10s;
-}
-
-@keyframes move {
-    0% {
-        transform: translate(0, 0) scale(1);
+@media (max-width: 768px) {
+    body::before {
+        background-image: url('bg_mob.webp');
     }
+}
 
-    33% {
-        transform: translate(30px, -50px) scale(1.1);
-    }
-
-    66% {
-        transform: translate(-20px, 20px) scale(0.9);
-    }
-
-    100% {
-        transform: translate(0, 0) scale(1);
-    }
+/* Glassmorphism Overlay */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.4) 100%);
 }
 
 .container {
@@ -152,9 +121,7 @@ body {
     font-size: 32px;
     font-weight: 700;
     margin-bottom: 12px;
-    background: linear-gradient(to bottom right, #fff, #a1a1aa);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: #ffffff;
     letter-spacing: -0.02em;
 }
 
@@ -226,7 +193,7 @@ form {
 .field input:focus,
 .field textarea:focus {
     border-color: var(--accent);
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.1);
     box-shadow: 0 0 0 4px var(--accent-soft);
 }
 
@@ -262,7 +229,7 @@ button {
     border: none;
     border-radius: var(--radius-md);
     background: var(--accent);
-    color: white;
+    color: #000000;
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
@@ -271,13 +238,13 @@ button {
     align-items: center;
     justify-content: center;
     gap: 8px;
-    box-shadow: 0 4px 8px -1px rgba(6, 182, 212, 0.3);
+    box-shadow: 0 10px 15px -3px rgba(255, 255, 255, 0.1);
 }
 
 button:hover {
     background: var(--accent-hover);
     transform: translateY(-2px);
-    box-shadow: 0 6px 10px -2px rgba(6, 182, 212, 0.4);
+    box-shadow: 0 20px 25px -5px rgba(255, 255, 255, 0.15);
 }
 
 button:active {
